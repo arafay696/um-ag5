@@ -1,20 +1,31 @@
+1: Create github account & push code in master branch
+2: Create app in heroku and attach with github
+3: update Package.json
+   a) remove default "start" from "scripts" object
+   b) add "postinstall" and "start" like below
+   c) move @angular/cli and @angular/compiler-cli from devDependencies to dependencies
+   d) add "engines" like below
+---------------------Package.json-----------------------------
 {
   "name": "cr-management-ag5",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --prod --base-href=./",
+    "start": "node server.js"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^5.0.0",
+    "@angular/cli": "1.5.0",
     "@angular/common": "^5.0.0",
     "@angular/compiler": "^5.0.0",
+    "@angular/compiler-cli": "^5.0.0",
     "@angular/core": "^5.0.0",
     "@angular/forms": "^5.0.0",
     "@angular/http": "^5.0.0",
@@ -25,11 +36,10 @@
     "core-js": "^2.4.1",
     "font-awesome": "^4.7.0",
     "rxjs": "^5.5.2",
+    "typescript": "~2.4.2",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
-    "@angular/cli": "1.5.0",
-    "@angular/compiler-cli": "^5.0.0",
     "@angular/language-service": "^5.0.0",
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "~2.0.2",
@@ -47,5 +57,20 @@
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
     "typescript": "~2.4.2"
+  },
+  "engines": {
+    "node": "6.10.0",
+    "npm": "3.10.10"
   }
 }
+
+4: create server.js like below
+---------------------server.js-----------------------------
+const express = require('express');
+const app = express();
+
+app.use(express.static(__dirname + '/dist'));
+app.listen(process.env.PORT || 8080);
+
+5: push code to master branch
+6: deploy code manually or auto deploy heroku.
