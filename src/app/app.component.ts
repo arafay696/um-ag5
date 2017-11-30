@@ -9,12 +9,8 @@ import {CommonService} from './common.service';
     ]
 })
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
     title = 'app';
-
-    toggleMenu() {
-        alert();
-    }
 
     constructor(private commonService: CommonService) {
     }

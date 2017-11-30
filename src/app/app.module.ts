@@ -13,7 +13,17 @@ import {SidebarComponent} from './sidebar/sidebar.component';
 import {UsersComponent} from './users/users.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {NewUserComponent} from './new-user/new-user.component';
-import { UserUpdateComponent } from './user-update/user-update.component';
+
+import {UserUpdateComponent} from './user-update/user-update.component';
+import {ToggleMenuDirective} from './toggle-menu.directive';
+import {HeaderComponent} from './header/header.component';
+
+import {ProjectsComponent} from './projects/projects.component';
+import {NewProjectComponent} from './new-project/new-project.component';
+
+import {NgDatepickerModule} from 'ng2-datepicker';
+import {DatePipe} from '@angular/common';
+import { EditProjectComponent } from './edit-project/edit-project.component';
 
 @NgModule({
     declarations: [
@@ -23,16 +33,22 @@ import { UserUpdateComponent } from './user-update/user-update.component';
         UsersComponent,
         DashboardComponent,
         NewUserComponent,
-        UserUpdateComponent
+        UserUpdateComponent,
+        ToggleMenuDirective,
+        HeaderComponent,
+        ProjectsComponent,
+        NewProjectComponent,
+        EditProjectComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         HttpClientModule,
-        FormsModule
+        FormsModule,
+        NgDatepickerModule
     ],
-    providers: [CommonService],
-    bootstrap: [AppComponent, SidebarComponent]
+    providers: [CommonService, DatePipe],
+    bootstrap: [AppComponent, SidebarComponent, HeaderComponent]
 })
 
 export class AppModule {
